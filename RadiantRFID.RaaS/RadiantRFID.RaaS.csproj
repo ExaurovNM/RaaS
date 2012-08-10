@@ -172,6 +172,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RadiantRFID.RaaS.Services\RadiantRFID.RaaS.Services.csproj">
+      <Project>{605E4AF4-A23D-4579-9D07-703226338C3E}</Project>
+      <Name>RadiantRFID.RaaS.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RadiantRFID.RaaS.Tools\RadiantRFID.RaaS.Tools.csproj">
       <Project>{A919E785-D8B3-4DD1-A688-3E2448AF4E03}</Project>
       <Name>RadiantRFID.RaaS.Tools</Name>

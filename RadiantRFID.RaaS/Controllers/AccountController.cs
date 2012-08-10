@@ -4,6 +4,8 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using RadiantRFID.RaaS.Models;
+    using RadiantRFID.RaaS.Tools.Common;
+    using RadiantRFID.RaaS.Tools.DataAccess;
     using RadiantRFID.RaaS.Tools.Security;
 
     public class AccountController : Controller
@@ -13,9 +15,15 @@
         /// </summary>
         private readonly IAuthService authService;
 
-        public AccountController(IAuthService authService)
+        private readonly IUserRepository userRepository;
+
+        private readonly IContextProvider contextProvider;
+
+        public AccountController(IAuthService authService, IUserRepository userRepository, IContextProvider contextProvider)
         {
             this.authService = authService;
+            this.userRepository = userRepository;
+            this.contextProvider = contextProvider;
         }
 
         //
@@ -37,6 +45,11 @@
                 if (this.authService.ValidateUser(model.UserName, model.Password))
                 {
                     this.authService.LogonUser(model.UserName);
+                    this.contextProvider.SetUserToSession(new UserSession
+                        {
+                            Password = model.Password,
+                            UserName = model.UserName
+                        });
                     if (this.Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -83,19 +96,13 @@
         {
             if (this.ModelState.IsValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return this.RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    this.ModelState.AddModelError("", ErrorCodeToString(createStatus));
-                }
+                Account account = new Account
+                    {
+                        Id = Guid.NewGuid(),
+                        AccountName = model.UserName,
+                        Password = model.Password
+                    };
+                this.userRepository.CreateItem(account);
             }
 
             // If we got this far, something failed, redisplay form

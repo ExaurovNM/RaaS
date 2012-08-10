@@ -8,49 +8,33 @@ namespace RadiantRFID.RaaS.Controllers
     using System.Web.Mvc;
 
     using RadiantRFID.RaaS.Models;
-    using RadiantRFID.RaaS.Tools.DeviceRepositoryService;
-
+    using RadiantRFID.RaaS.Services;
+    using RadiantRFID.RaaS.Tools.Common;
 
     [Authorize]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+
+        private readonly IContextProvider contextProvider;
+
+        private readonly DeviceRepositoryRMSService deviceRepositoryRMSService;
+
+        public HomeController(IContextProvider contextProvider)
         {
-            UserSession userSession = new UserSession
-                {
-                    Password = "password",
-                    UserName = "test"
-                };
-
-            var httpSessionStateBase = this.HttpContext.Session;
-            if (httpSessionStateBase != null)
-            {
-                httpSessionStateBase.Add("CurrentUser", userSession);
-            }
-            var client = new DeviceRepositoryClient();
-            var credentials = new NetworkCredential("test", "password");
-            if (client.ClientCredentials != null)
-            {
-                UserSession session =  httpSessionStateBase["CurrentUser"] as UserSession;
-                client.ClientCredentials.UserName.Password = session.Password;
-                client.ClientCredentials.UserName.UserName = session.UserName;
-            }
-
-            var items = client.GetItems();
-            this.ViewBag.Message = "Welcome to ASP.NET MVC!";
-            IList<DeviceModel> model = items.ToList().Select(it => new DeviceModel
-                {
-                    DeviceName = it.Description,
-                    MacAddress = it.MacAddress
-                }).ToList();
-            return this.View(model);
+            this.contextProvider = contextProvider;
+            deviceRepositoryRMSService = new DeviceRepositoryRMSService();
         }
 
-        public class UserSession
+        public ActionResult Index()
         {
-            public string UserName { get; set; }
+            var userSession = contextProvider.GetUserFromSession();
+            var devices = deviceRepositoryRMSService.GetDevices(new NetworkCredential { UserName = userSession.UserName, Password = userSession.Password });
 
-            public string Password { get; set; }     
+            IList<DeviceModel> model =
+                devices.ToList().Select(
+                    it => new DeviceModel { DeviceName = it.Description, MacAddress = it.MacAddress }).ToList();
+
+            return this.View(model);
         }
 
         public ActionResult About()

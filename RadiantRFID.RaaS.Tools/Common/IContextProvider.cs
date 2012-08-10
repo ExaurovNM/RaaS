@@ -1,20 +1,22 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="IUserRepository.cs" company="">
+// <copyright file="IContextProvider.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace RadiantRFID.RaaS.Tools.DataAccess
+namespace RadiantRFID.RaaS.Tools.Common
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IUserRepository
+    public interface IContextProvider
     {
-        ICollection<Account> GetItems();
+        void SetUserToSession(UserSession userSession);
 
-        void CreateItem(Account account);
+        UserSession GetUserFromSession();
     }
 }
