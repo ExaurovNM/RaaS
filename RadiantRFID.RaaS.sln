@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadiantRFID.RaaS", "Radiant
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadiantRFID.RaaS.Tools", "RadiantRFID.RaaS.Tools\RadiantRFID.RaaS.Tools.csproj", "{A919E785-D8B3-4DD1-A688-3E2448AF4E03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadiantRFID.RaaS.Services", "RadiantRFID.RaaS.Services\RadiantRFID.RaaS.Services.csproj", "{605E4AF4-A23D-4579-9D07-703226338C3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{A919E785-D8B3-4DD1-A688-3E2448AF4E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A919E785-D8B3-4DD1-A688-3E2448AF4E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A919E785-D8B3-4DD1-A688-3E2448AF4E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{605E4AF4-A23D-4579-9D07-703226338C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{605E4AF4-A23D-4579-9D07-703226338C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{605E4AF4-A23D-4579-9D07-703226338C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{605E4AF4-A23D-4579-9D07-703226338C3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

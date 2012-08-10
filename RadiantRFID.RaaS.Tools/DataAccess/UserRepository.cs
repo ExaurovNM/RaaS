@@ -19,5 +19,11 @@ namespace RadiantRFID.RaaS.Tools.DataAccess
         {
             return this.dataBaseContext.Accounts.ToList();
         }
+
+        public void CreateItem(Account account)
+        {
+            dataBaseContext.Accounts.Add(account);
+            dataBaseContext.SaveChanges();
+        }
     }
 }
