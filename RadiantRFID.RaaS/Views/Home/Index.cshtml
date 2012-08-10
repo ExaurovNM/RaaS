@@ -1,0 +1,18 @@
+﻿@using eee.eee.Tools.DeviceRepositoryService
+@model List<RadiantRFID.RaaS.Models.DeviceModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+</p>
+
+@{
+    foreach (var item in Model)
+    {
+        <br/>
+            @item.MacAddress.ToString();
+    }
+}
