@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 bin
 obj
 *ReSharper*
@@ -15,4 +16,23 @@ packages
 *.ldf
 *.stylecop
 *.[Cc]ache
+=======
+bin
+obj
+*ReSharper*
+packages
+*.pyc
+*.db
+*.html
+*.suo
+*.user
+*.dotCover
+2012-07-*
+2012-08-*
+*.ncrunchsolution
+*.MDF
+*.ldf
+*.stylecop
+*.[Cc]ache
+>>>>>>> f1cffb98a628bb69914147dcb393fb3c9b65e32a
 *.cache
