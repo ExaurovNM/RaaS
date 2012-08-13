@@ -2,6 +2,7 @@ namespace RadiantRFID.RaaS.Tools.Security
 {
     using System;
     using System.Linq;
+    using System.Web;
     using System.Web.Security;
 
     using RadiantRFID.RaaS.Tools.DataAccess;
@@ -34,9 +35,10 @@ namespace RadiantRFID.RaaS.Tools.Security
         /// <param name="userName">
         /// The user name.
         /// </param>
-        public void LogonUser(string userName)
+        public void LogonUser(string userName, bool remember)
         {
-            FormsAuthentication.SetAuthCookie(userName, true);
+            FormsAuthentication.SetAuthCookie(userName, remember);
+            
         }
 
         /// <summary>

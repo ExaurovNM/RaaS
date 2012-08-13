@@ -6,11 +6,10 @@
 
 namespace RadiantRFID.RaaS.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Text;
+    using System.ServiceModel;
 
     using RadiantRFID.RaaS.Tools.DeviceRepositoryService;
 
@@ -25,7 +24,14 @@ namespace RadiantRFID.RaaS.Services
             client.ClientCredentials.UserName.UserName = credential.UserName;
             client.ClientCredentials.UserName.Password = credential.Password;
 
-            return client.GetItems().ToList();
+            if (client.State == CommunicationState.Opened)
+            {
+                return client.GetItems().ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -15,6 +15,8 @@
             this.Bind<DataBaseContext>().ToMethod(it => new DataBaseContext()).InRequestScope();
             this.Bind<IUserRepository>().To<UserRepository>();
             this.Bind<IContextProvider>().To<ContextProvider>();
+            this.Bind<ISession>().To<Session>();
+            this.Bind<IRandomToken>().To<RandomToken>();
         }
     }
 }

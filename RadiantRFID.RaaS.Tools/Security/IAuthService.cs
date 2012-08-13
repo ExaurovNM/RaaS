@@ -13,7 +13,7 @@ namespace RadiantRFID.RaaS.Tools.Security
     {
         bool ValidateUser(string userName, string password);
 
-        void LogonUser(string userName);
+        void LogonUser(string userName, bool remember);
 
         void LogoutUser();
     }

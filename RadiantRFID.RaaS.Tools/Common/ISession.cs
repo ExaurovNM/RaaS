@@ -1,11 +1,12 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="IContextProvider.cs" company="">
+// <copyright file="ISession.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace RadiantRFID.RaaS.Tools.Common
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -13,10 +14,12 @@ namespace RadiantRFID.RaaS.Tools.Common
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IContextProvider
+    public interface ISession
     {
-        void SaveUserToSession(UserSession userSession);
+        void Add(string key, object value);
 
-        UserSession GetUserFromSession();
+        object Get(string key);
+
+        T Get<T>(string key) where T : class;
     }
 }

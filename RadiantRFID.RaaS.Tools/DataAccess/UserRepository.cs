@@ -1,5 +1,6 @@
 namespace RadiantRFID.RaaS.Tools.DataAccess
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -24,6 +25,11 @@ namespace RadiantRFID.RaaS.Tools.DataAccess
         {
             dataBaseContext.Accounts.Add(account);
             dataBaseContext.SaveChanges();
+        }
+
+        public Account GetItem(Guid Id)
+        {
+            return dataBaseContext.Accounts.SingleOrDefault(it => it.Id == Id);
         }
     }
 }

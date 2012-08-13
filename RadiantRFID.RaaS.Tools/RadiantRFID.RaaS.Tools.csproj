@@ -68,6 +68,10 @@
   <ItemGroup>
     <Compile Include="Common\ContextProvider.cs" />
     <Compile Include="Common\IContextProvider.cs" />
+    <Compile Include="Common\IRandomToken.cs" />
+    <Compile Include="Common\ISession.cs" />
+    <Compile Include="Common\RandomToken.cs" />
+    <Compile Include="Common\Session.cs" />
     <Compile Include="Common\UserSession.cs" />
     <Compile Include="DataAccess\Account.cs" />
     <Compile Include="DataAccess\DataBaseContext.cs" />

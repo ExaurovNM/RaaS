@@ -1,26 +1,34 @@
 namespace RadiantRFID.RaaS.Tools.Common
 {
-    using System;
     using System.Web;
-    using System.Web.SessionState;
+
+    using RadiantRFID.RaaS.Tools.DataAccess;
 
     public class ContextProvider : IContextProvider
     {
-        private HttpSessionState session;
+        private readonly ISession session;
+        private readonly IRandomToken randomToken;
 
-        public ContextProvider()
+        private const string ParamName = "User";
+
+        public ContextProvider(ISession session, IRandomToken randomToken)
         {
-            session = HttpContext.Current.Session;
+            this.session = session;
+            this.randomToken = randomToken;
         }
 
-        public void SetUserToSession(UserSession userSession)
+        public void SaveUserToSession(UserSession userSession)
         {
-            this.session.Add("CurrentUser", userSession);
+            var token = this.randomToken.GetRandomToken();
+            this.session.Add(token, userSession);
+            HttpContext.Current.Response.Cookies.Add(new HttpCookie(ParamName, token) { HttpOnly = true });
         }
 
         public UserSession GetUserFromSession()
         {
-            return this.session["CurrentUser"] as UserSession;
+            var token = HttpContext.Current.Request[ParamName];
+
+            return null == token ? null : this.session.Get<UserSession>(token);
         }
     }
 }

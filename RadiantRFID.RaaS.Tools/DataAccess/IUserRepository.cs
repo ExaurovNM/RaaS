@@ -6,6 +6,7 @@
 
 namespace RadiantRFID.RaaS.Tools.DataAccess
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -16,5 +17,7 @@ namespace RadiantRFID.RaaS.Tools.DataAccess
         ICollection<Account> GetItems();
 
         void CreateItem(Account account);
+
+        Account GetItem(Guid Id);
     }
 }

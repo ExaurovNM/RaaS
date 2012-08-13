@@ -44,8 +44,8 @@
             {
                 if (this.authService.ValidateUser(model.UserName, model.Password))
                 {
-                    this.authService.LogonUser(model.UserName);
-                    this.contextProvider.SetUserToSession(new UserSession
+                    this.authService.LogonUser(model.UserName, model.RememberMe);
+                    this.contextProvider.SaveUserToSession(new UserSession
                         {
                             Password = model.Password,
                             UserName = model.UserName
@@ -104,7 +104,7 @@
                     };
                 this.userRepository.CreateItem(account);
             }
-
+            
             // If we got this far, something failed, redisplay form
             return this.View(model);
         }
