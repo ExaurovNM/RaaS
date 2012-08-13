@@ -14,5 +14,3 @@ packages
 *.MDF
 *.ldf
 *.stylecop
-*.[Cc]ache
-*.cache
