@@ -1,0 +1,5 @@
+D:\Solutions\RaaS\RadiantRFID.RaaS\RadiantRFID.RaaS.DomainModel\bin\Debug\RadiantRFID.RaaS.DomainModel.dll
+D:\Solutions\RaaS\RadiantRFID.RaaS\RadiantRFID.RaaS.DomainModel\bin\Debug\RadiantRFID.RaaS.DomainModel.pdb
+D:\Solutions\RaaS\RadiantRFID.RaaS\RadiantRFID.RaaS.DomainModel\obj\Debug\ResolveAssemblyReference.cache
+D:\Solutions\RaaS\RadiantRFID.RaaS\RadiantRFID.RaaS.DomainModel\obj\Debug\RadiantRFID.RaaS.DomainModel.dll
+D:\Solutions\RaaS\RadiantRFID.RaaS\RadiantRFID.RaaS.DomainModel\obj\Debug\RadiantRFID.RaaS.DomainModel.pdb

@@ -1,0 +1,5 @@
+D:\Solutions\RaaS\RadiantRFID.RaaS\Tools\bin\Debug\Tools.dll
+D:\Solutions\RaaS\RadiantRFID.RaaS\Tools\bin\Debug\Tools.pdb
+D:\Solutions\RaaS\RadiantRFID.RaaS\Tools\obj\Debug\ResolveAssemblyReference.cache
+D:\Solutions\RaaS\RadiantRFID.RaaS\Tools\obj\Debug\Tools.dll
+D:\Solutions\RaaS\RadiantRFID.RaaS\Tools\obj\Debug\Tools.pdb
