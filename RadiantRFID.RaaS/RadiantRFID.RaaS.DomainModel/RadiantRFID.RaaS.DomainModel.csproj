@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,9 +46,115 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthService.cs" />
     <Compile Include="Security\IAuthService.cs" />
+    <Compile Include="Service References\DeviceRepositoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DeviceStatusRepositoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TagReadHistoryRepositoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ServiceClientFactory.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <None Include="app.config" />
+    <None Include="Service References\DeviceRepositoryService\DeviceRepository.wsdl" />
+    <None Include="Service References\DeviceRepositoryService\DeviceRepository.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DeviceRepositoryService\DeviceRepository1.wsdl" />
+    <None Include="Service References\DeviceRepositoryService\DeviceRepository1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DeviceRepositoryService\RadiantRFID.RaaS.DomainModel.DeviceRepositoryService.Device.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DeviceStatusRepositoryService\DeviceStatusRepository.wsdl" />
+    <None Include="Service References\DeviceStatusRepositoryService\DeviceStatusRepository.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DeviceStatusRepositoryService\DeviceStatusRepository1.wsdl" />
+    <None Include="Service References\DeviceStatusRepositoryService\DeviceStatusRepository1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DeviceStatusRepositoryService\RadiantRFID.RaaS.DomainModel.DeviceStatusRepositoryService.DeviceStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TagReadHistoryRepositoryService\RadiantRFID.RaaS.DomainModel.TagReadHistoryRepositoryService.RowSetOfTagReadwHn9YQzw.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TagReadHistoryRepositoryService\RadiantRFID.RaaS.DomainModel.TagReadHistoryRepositoryService.SyncAnchor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TagReadHistoryRepositoryService\TagReadHistoryRepository.wsdl" />
+    <None Include="Service References\TagReadHistoryRepositoryService\TagReadHistoryRepository.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TagReadHistoryRepositoryService\TagReadHistoryRepository1.wsdl" />
+    <None Include="Service References\TagReadHistoryRepositoryService\TagReadHistoryRepository1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DeviceRepositoryService\" />
+    <WCFMetadataStorage Include="Service References\DeviceStatusRepositoryService\" />
+    <WCFMetadataStorage Include="Service References\TagReadHistoryRepositoryService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceRepositoryService\DeviceRepository.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceRepositoryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceRepositoryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceRepositoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TagReadHistoryRepositoryService\TagReadHistoryRepository.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TagReadHistoryRepositoryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TagReadHistoryRepositoryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TagReadHistoryRepositoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceStatusRepositoryService\DeviceStatusRepository.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceStatusRepositoryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceStatusRepositoryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeviceStatusRepositoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -162,6 +162,12 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RadiantRFID.RaaS.DomainModel\RadiantRFID.RaaS.DomainModel.csproj">
+      <Project>{AC6312D2-72B8-4B68-99D3-893EAF5BFAB1}</Project>
+      <Name>RadiantRFID.RaaS.DomainModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

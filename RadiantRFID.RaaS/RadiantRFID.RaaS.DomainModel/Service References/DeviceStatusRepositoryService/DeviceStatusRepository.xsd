@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://www.radiantrfid.com/rms/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://stas-pc:8080/RMS/integration/DeviceStatusRepository.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:element name="GetDeviceStatuses">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeviceStatusesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.radiantrfid.com/rms/" minOccurs="0" name="GetDeviceStatusesResult" nillable="true" type="q1:ArrayOfDeviceStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfDeviceStatus">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://www.radiantrfid.com/rms/" minOccurs="0" maxOccurs="unbounded" name="DeviceStatus" nillable="true" type="q2:DeviceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q3="http://www.radiantrfid.com/rms/" name="ArrayOfDeviceStatus" nillable="true" type="q3:ArrayOfDeviceStatus" />
+  <xs:complexType name="DeviceStatus">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://www.radiantrfid.com/rms/" minOccurs="0" name="Antennas" nillable="true" type="q4:ArrayOfAntennaStatus" />
+      <xs:element minOccurs="0" name="DeviceID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsOn" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPollingEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatusTimeUtc" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q5="http://www.radiantrfid.com/rms/" name="DeviceStatus" nillable="true" type="q5:DeviceStatus" />
+  <xs:complexType name="ArrayOfAntennaStatus">
+    <xs:sequence>
+      <xs:element xmlns:q6="http://www.radiantrfid.com/rms/" minOccurs="0" maxOccurs="unbounded" name="AntennaStatus" nillable="true" type="q6:AntennaStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q7="http://www.radiantrfid.com/rms/" name="ArrayOfAntennaStatus" nillable="true" type="q7:ArrayOfAntennaStatus" />
+  <xs:complexType name="AntennaStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Index" type="xs:int" />
+      <xs:element minOccurs="0" name="IsOn" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q8="http://www.radiantrfid.com/rms/" name="AntennaStatus" nillable="true" type="q8:AntennaStatus" />
+</xs:schema>
