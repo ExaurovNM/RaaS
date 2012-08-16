@@ -1,4 +1,4 @@
-/**
+﻿/**
 * Note: While Microsoft is not the author of this file, Microsoft is
 * offering you a license subject to the terms of the Microsoft Software
 * License Terms for Microsoft ASP.NET Model View Controller 3.
@@ -37,14 +37,14 @@ $.extend($.fn, {
 
 		if ( validator.settings.onsubmit ) {
 
-			// allow suppresing validation by adding a cancel class to the submit button
-			this.find("input, button").filter(".cancel").click(function() {
+			// allow suppresing validation by adding a cancel class to the submit button-my
+			this.find("input, button-my").filter(".cancel").click(function() {
 				validator.cancelSubmit = true;
 			});
 
-			// when a submitHandler is used, capture the submitting button
+			// when a submitHandler is used, capture the submitting button-my
 			if (validator.settings.submitHandler) {
-				this.find("input, button").filter(":submit").click(function() {
+				this.find("input, button-my").filter(":submit").click(function() {
 					validator.submitButton = this;
 				});
 			}
@@ -58,7 +58,7 @@ $.extend($.fn, {
 				function handle() {
 					if ( validator.settings.submitHandler ) {
 						if (validator.submitButton) {
-							// insert a hidden input as a replacement for the missing submit button
+							// insert a hidden input as a replacement for the missing submit button-my
 							var hidden = $("<input type='hidden'/>").attr("name", validator.submitButton.name).val(validator.submitButton.value).appendTo(validator.currentForm);
 						}
 						validator.settings.submitHandler.call( validator, validator.currentForm );
@@ -234,7 +234,7 @@ $.extend($.validator, {
 			}
 		},
 		onclick: function(element) {
-			// click on selects, radiobuttons and checkboxes
+			// click on selects, radiobutton-mys and checkboxes
 			if ( element.name in this.submitted )
 				this.element(element);
 			// or option elements, check parent select in that case
@@ -432,7 +432,7 @@ $.extend($.validator, {
 			var validator = this,
 				rulesCache = {};
 
-			// select all valid inputs inside the form (no submit or reset buttons)
+			// select all valid inputs inside the form (no submit or reset button-mys)
 			// workaround $Query([]).add until http://dev.jquery.com/ticket/2114 is solved
 			return $([]).add(this.currentForm.elements)
 			.filter(":input")

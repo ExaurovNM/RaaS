@@ -2,7 +2,34 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
+@section Menu_tagline {
+    <div class="tagline_information">
+        <h2>Easy and Affordable RFID Solutions</h2>
+
+        One day Nasreddin borrowed a pot from his neighbour Ali. The next day he brought
+        it back with another little pot inside. "That's not mine," said Ali. "Yes, it is,"
+        said Nasreddin. "While your pot was staying with me, it had a baby."
+        <div class="button-holder">
+            <div class="button-mask rass-button">
+                <input type="button" class="rass-button create-account-btn"  value="Create an Account"/>
+            </div>
+            <div class="button-mask rass-button">
+                <input type="button" class="rass-button logon-btn"  value="Customer Login"/>
+             </div>
+        </div>
+    </div>
+   
+    <div class = "tagline_cube">
+        <img src="../../Content/images/placeholder_img.png" />
+    </div>
+    <div>
+        
+    </div>
+}
+
+@section LeftPanel{
+    The king’s name was Gwyddno.
+He was a good king , but he worried about the fact that cantre’r Gwaelod was below sea level.
+
+Because of this, the walls had to be well guarded, and the gates closed, especially during stormy weather.
+}

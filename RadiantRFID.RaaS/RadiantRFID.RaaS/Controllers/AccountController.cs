@@ -9,8 +9,17 @@ using RadiantRFID.RaaS.Models;
 
 namespace RadiantRFID.RaaS.Controllers
 {
+    using RadiantRFID.RaaS.DomainModel.Security;
+
     public class AccountController : Controller
     {
+
+        private readonly IAuthService authService;
+
+        public AccountController(IAuthService authService)
+        {
+            this.authService = authService;
+        }
 
         //
         // GET: /Account/LogOn
@@ -28,9 +37,9 @@ namespace RadiantRFID.RaaS.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.UserName, model.Password))
+                if (authService.ValidateUser(model.UserName, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    authService.Logon(model.UserName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -56,7 +65,7 @@ namespace RadiantRFID.RaaS.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
+            authService.Logout();
 
             return RedirectToAction("Index", "Home");
         }

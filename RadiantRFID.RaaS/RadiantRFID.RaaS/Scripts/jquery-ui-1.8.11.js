@@ -204,7 +204,7 @@ $.extend( $.expr[ ":" ], {
 			img = $( "img[usemap=#" + mapName + "]" )[0];
 			return !!img && visible( img );
 		}
-		return ( /input|select|textarea|button|object/.test( nodeName )
+		return ( /input|select|textarea|button-my|object/.test( nodeName )
 			? !element.disabled
 			: "a" == nodeName
 				? element.href || !isNaN( tabIndex )
@@ -2145,7 +2145,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 		});
 
 		//Wrap the element if it cannot hold child nodes
-		if(this.element[0].nodeName.match(/canvas|textarea|input|select|button|img/i)) {
+		if(this.element[0].nodeName.match(/canvas|textarea|input|select|button-my|img/i)) {
 
 			//Opera fix for relative positioning
 			if (/relative/.test(this.element.css('position')) && $.browser.opera)
@@ -2225,7 +2225,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 					this.handles[i] = $(this.handles[i], this.element).show();
 
 				//Apply pad to wrapper element, needed to fix axis position (textarea, inputs, scrolls)
-				if (this.elementIsWrapper && this.originalElement[0].nodeName.match(/textarea|input|select|button/i)) {
+				if (this.elementIsWrapper && this.originalElement[0].nodeName.match(/textarea|input|select|button-my/i)) {
 
 					var axis = $(this.handles[i], this.element), padWrapper = 0;
 
@@ -5003,7 +5003,7 @@ $.widget( "ui.autocomplete", {
 				}
 
 				clearTimeout( self.searching );
-				// clicks on the menu (or a button to trigger a search) will cause a blur event
+				// clicks on the menu (or a button-my to trigger a search) will cause a blur event
 				self.closing = setTimeout(function() {
 					self.close( event );
 					self._change( event );
@@ -5337,7 +5337,7 @@ $.widget("ui.menu", {
 			.addClass("ui-menu ui-widget ui-widget-content ui-corner-all")
 			.attr({
 				role: "listbox",
-				"aria-activedescendant": "ui-active-menuitem"
+				"aria-activedescendant": "ui-active-menu-item"
 			})
 			.click(function( event ) {
 				if ( !$( event.target ).closest( ".ui-menu-item a" ).length ) {
@@ -5356,7 +5356,7 @@ $.widget("ui.menu", {
 		// don't refresh list items that are already adapted
 		var items = this.element.children("li:not(.ui-menu-item):has(a)")
 			.addClass("ui-menu-item")
-			.attr("role", "menuitem");
+			.attr("role", "menu-item");
 		
 		items.children("a")
 			.addClass("ui-corner-all")
@@ -5385,7 +5385,7 @@ $.widget("ui.menu", {
 		this.active = item.eq(0)
 			.children("a")
 				.addClass("ui-state-hover")
-				.attr("id", "ui-active-menuitem")
+				.attr("id", "ui-active-menu-item")
 			.end();
 		this._trigger("focus", event, { item: item });
 	},
@@ -5515,12 +5515,12 @@ $.widget("ui.menu", {
 (function( $, undefined ) {
 
 var lastActive,
-	baseClasses = "ui-button ui-widget ui-state-default ui-corner-all",
+	baseClasses = "ui-button-my ui-widget ui-state-default ui-corner-all",
 	stateClasses = "ui-state-hover ui-state-active ",
-	typeClasses = "ui-button-icons-only ui-button-icon-only ui-button-text-icons ui-button-text-icon-primary ui-button-text-icon-secondary ui-button-text-only",
+	typeClasses = "ui-button-my-icons-only ui-button-my-icon-only ui-button-my-text-icons ui-button-my-text-icon-primary ui-button-my-text-icon-secondary ui-button-my-text-only",
 	formResetHandler = function( event ) {
-		$( ":ui-button", event.target.form ).each(function() {
-			var inst = $( this ).data( "button" );
+		$( ":ui-button-my", event.target.form ).each(function() {
+			var inst = $( this ).data( "button-my" );
 			setTimeout(function() {
 				inst.refresh();
 			}, 1 );
@@ -5543,7 +5543,7 @@ var lastActive,
 		return radios;
 	};
 
-$.widget( "ui.button", {
+$.widget( "ui.button-my", {
 	options: {
 		disabled: null,
 		text: true,
@@ -5555,8 +5555,8 @@ $.widget( "ui.button", {
 	},
 	_create: function() {
 		this.element.closest( "form" )
-			.unbind( "reset.button" )
-			.bind( "reset.button", formResetHandler );
+			.unbind( "reset.button-my" )
+			.bind( "reset.button-my", formResetHandler );
 
 		if ( typeof this.options.disabled !== "boolean" ) {
 			this.options.disabled = this.element.attr( "disabled" );
@@ -5581,8 +5581,8 @@ $.widget( "ui.button", {
 
 		this.buttonElement
 			.addClass( baseClasses )
-			.attr( "role", "button" )
-			.bind( "mouseenter.button", function() {
+			.attr( "role", "button-my" )
+			.bind( "mouseenter.button-my", function() {
 				if ( options.disabled ) {
 					return;
 				}
@@ -5591,28 +5591,28 @@ $.widget( "ui.button", {
 					$( this ).addClass( "ui-state-active" );
 				}
 			})
-			.bind( "mouseleave.button", function() {
+			.bind( "mouseleave.button-my", function() {
 				if ( options.disabled ) {
 					return;
 				}
 				$( this ).removeClass( hoverClass );
 			})
-			.bind( "focus.button", function() {
+			.bind( "focus.button-my", function() {
 				// no need to check disabled, focus won't be triggered anyway
 				$( this ).addClass( focusClass );
 			})
-			.bind( "blur.button", function() {
+			.bind( "blur.button-my", function() {
 				$( this ).removeClass( focusClass );
 			});
 
 		if ( toggleButton ) {
-			this.element.bind( "change.button", function() {
+			this.element.bind( "change.button-my", function() {
 				self.refresh();
 			});
 		}
 
 		if ( this.type === "checkbox" ) {
-			this.buttonElement.bind( "click.button", function() {
+			this.buttonElement.bind( "click.button-my", function() {
 				if ( options.disabled ) {
 					return false;
 				}
@@ -5620,7 +5620,7 @@ $.widget( "ui.button", {
 				self.buttonElement.attr( "aria-pressed", self.element[0].checked );
 			});
 		} else if ( this.type === "radio" ) {
-			this.buttonElement.bind( "click.button", function() {
+			this.buttonElement.bind( "click.button-my", function() {
 				if ( options.disabled ) {
 					return false;
 				}
@@ -5638,7 +5638,7 @@ $.widget( "ui.button", {
 			});
 		} else {
 			this.buttonElement
-				.bind( "mousedown.button", function() {
+				.bind( "mousedown.button-my", function() {
 					if ( options.disabled ) {
 						return false;
 					}
@@ -5648,13 +5648,13 @@ $.widget( "ui.button", {
 						lastActive = null;
 					});
 				})
-				.bind( "mouseup.button", function() {
+				.bind( "mouseup.button-my", function() {
 					if ( options.disabled ) {
 						return false;
 					}
 					$( this ).removeClass( "ui-state-active" );
 				})
-				.bind( "keydown.button", function(event) {
+				.bind( "keydown.button-my", function(event) {
 					if ( options.disabled ) {
 						return false;
 					}
@@ -5662,7 +5662,7 @@ $.widget( "ui.button", {
 						$( this ).addClass( "ui-state-active" );
 					}
 				})
-				.bind( "keyup.button", function() {
+				.bind( "keyup.button-my", function() {
 					$( this ).removeClass( "ui-state-active" );
 				});
 
@@ -5693,7 +5693,7 @@ $.widget( "ui.button", {
 				if ( this.element.is("input") ) {
 					this.type = "input";
 				} else {
-					this.type = "button";
+					this.type = "button-my";
 				}
 			}
 		}
@@ -5734,7 +5734,7 @@ $.widget( "ui.button", {
 			.removeClass( baseClasses + " " + stateClasses + " " + typeClasses )
 			.removeAttr( "role" )
 			.removeAttr( "aria-pressed" )
-			.html( this.buttonElement.find(".ui-button-text").html() );
+			.html( this.buttonElement.find(".ui-button-my-text").html() );
 
 		if ( !this.hasTitle ) {
 			this.buttonElement.removeAttr( "title" );
@@ -5794,7 +5794,7 @@ $.widget( "ui.button", {
 		}
 		var buttonElement = this.buttonElement.removeClass( typeClasses ),
 			buttonText = $( "<span></span>" )
-				.addClass( "ui-button-text" )
+				.addClass( "ui-button-my-text" )
 				.html( this.options.label )
 				.appendTo( buttonElement.empty() )
 				.text(),
@@ -5804,38 +5804,38 @@ $.widget( "ui.button", {
 
 		if ( icons.primary || icons.secondary ) {
 			if ( this.options.text ) {
-				buttonClasses.push( "ui-button-text-icon" + ( multipleIcons ? "s" : ( icons.primary ? "-primary" : "-secondary" ) ) );
+				buttonClasses.push( "ui-button-my-text-icon" + ( multipleIcons ? "s" : ( icons.primary ? "-primary" : "-secondary" ) ) );
 			}
 
 			if ( icons.primary ) {
-				buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + icons.primary + "'></span>" );
+				buttonElement.prepend( "<span class='ui-button-my-icon-primary ui-icon " + icons.primary + "'></span>" );
 			}
 
 			if ( icons.secondary ) {
-				buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + icons.secondary + "'></span>" );
+				buttonElement.append( "<span class='ui-button-my-icon-secondary ui-icon " + icons.secondary + "'></span>" );
 			}
 
 			if ( !this.options.text ) {
-				buttonClasses.push( multipleIcons ? "ui-button-icons-only" : "ui-button-icon-only" );
+				buttonClasses.push( multipleIcons ? "ui-button-my-icons-only" : "ui-button-my-icon-only" );
 
 				if ( !this.hasTitle ) {
 					buttonElement.attr( "title", buttonText );
 				}
 			}
 		} else {
-			buttonClasses.push( "ui-button-text-only" );
+			buttonClasses.push( "ui-button-my-text-only" );
 		}
 		buttonElement.addClass( buttonClasses.join( " " ) );
 	}
 });
 
-$.widget( "ui.buttonset", {
+$.widget( "ui.button-myset", {
 	options: {
-		items: ":button, :submit, :reset, :checkbox, :radio, a, :data(button)"
+		items: ":button-my, :submit, :reset, :checkbox, :radio, a, :data(button-my)"
 	},
 
 	_create: function() {
-		this.element.addClass( "ui-buttonset" );
+		this.element.addClass( "ui-button-myset" );
 	},
 	
 	_init: function() {
@@ -5852,10 +5852,10 @@ $.widget( "ui.buttonset", {
 	
 	refresh: function() {
 		this.buttons = this.element.find( this.options.items )
-			.filter( ":ui-button" )
+			.filter( ":ui-button-my" )
 				.button( "refresh" )
 			.end()
-			.not( ":ui-button" )
+			.not( ":ui-button-my" )
 				.button()
 			.end()
 			.map(function() {
@@ -5872,7 +5872,7 @@ $.widget( "ui.buttonset", {
 	},
 
 	destroy: function() {
-		this.element.removeClass( "ui-buttonset" );
+		this.element.removeClass( "ui-button-myset" );
 		this.buttons
 			.map(function() {
 				return $( this ).button( "widget" )[ 0 ];
@@ -5903,7 +5903,7 @@ $.widget( "ui.buttonset", {
 * Depends:
 *	jquery.ui.core.js
 *	jquery.ui.widget.js
-*  jquery.ui.button.js
+*  jquery.ui.button-my.js
 *	jquery.ui.draggable.js
 *	jquery.ui.mouse.js
 *	jquery.ui.position.js
@@ -6028,7 +6028,7 @@ $.widget("ui.dialog", {
 					'ui-dialog-titlebar-close ' +
 					'ui-corner-all'
 				)
-				.attr('role', 'button')
+				.attr('role', 'button-my')
 				.hover(
 					function() {
 						uiDialogTitlebarClose.addClass('ui-state-hover');
@@ -6230,10 +6230,10 @@ $.widget("ui.dialog", {
 			});
 		}
 
-		// set focus to the first tabbable element in the content area or the first button
+		// set focus to the first tabbable element in the content area or the first button-my
 		// if there are no tabbable elements, set focus on the dialog itself
 		$(self.element.find(':tabbable').get().concat(
-			uiDialog.find('.ui-dialog-buttonpane :tabbable').get().concat(
+			uiDialog.find('.ui-dialog-button-mypane :tabbable').get().concat(
 				uiDialog.get()))).eq(0).focus();
 
 		self._isOpen = true;
@@ -6247,16 +6247,16 @@ $.widget("ui.dialog", {
 			hasButtons = false,
 			uiDialogButtonPane = $('<div></div>')
 				.addClass(
-					'ui-dialog-buttonpane ' +
+					'ui-dialog-button-mypane ' +
 					'ui-widget-content ' +
 					'ui-helper-clearfix'
 				),
 			uiButtonSet = $( "<div></div>" )
-				.addClass( "ui-dialog-buttonset" )
+				.addClass( "ui-dialog-button-myset" )
 				.appendTo( uiDialogButtonPane );
 
-		// if we already have a button pane, remove it
-		self.uiDialog.find('.ui-dialog-buttonpane').remove();
+		// if we already have a button-my pane, remove it
+		self.uiDialog.find('.ui-dialog-button-mypane').remove();
 
 		if (typeof buttons === 'object' && buttons !== null) {
 			$.each(buttons, function() {
@@ -6268,7 +6268,7 @@ $.widget("ui.dialog", {
 				props = $.isFunction( props ) ?
 					{ click: props, text: name } :
 					props;
-				var button = $('<button type="button"></button>')
+				var button = $('<button-my type="button-my"></button-my>')
 					.attr( props, true )
 					.unbind('click')
 					.click(function() {
@@ -6461,7 +6461,7 @@ $.widget("ui.dialog", {
 			case "beforeclose":
 				key = "beforeClose";
 				break;
-			case "buttons":
+			case "button-mys":
 				self._createButtons(value);
 				break;
 			case "closeText":
@@ -7850,7 +7850,7 @@ $.widget( "ui.tabs", {
 				throw "jQuery UI Tabs: Mismatching fragment identifier.";
 			}
 
-			// Prevent IE from keeping other link focussed when using the back button
+			// Prevent IE from keeping other link focussed when using the back button-my
 			// and remove dotted border from clicked link. This is controlled via CSS
 			// in modern browsers; blur() removes focus from address bar in Firefox
 			// which can become a usability and annoying problem with tabs('rotate').
@@ -8264,15 +8264,15 @@ function Datepicker() {
 	};
 	this._defaults = { // Global defaults for all the date picker instances
 		showOn: 'focus', // 'focus' for popup on focus,
-			// 'button' for trigger button, or 'both' for either
+			// 'button-my' for trigger button-my, or 'both' for either
 		showAnim: 'fadeIn', // Name of jQuery animation for popup
 		showOptions: {}, // Options for enhanced animations
 		defaultDate: null, // Used when field is blank: actual date,
 			// +/-number for offset from today, null for today
 		appendText: '', // Display text following the input box, e.g. showing the format
-		buttonText: '...', // Text for trigger button
-		buttonImage: '', // URL for trigger button image
-		buttonImageOnly: false, // True if the image appears alone, false if it appears on a button
+		buttonText: '...', // Text for trigger button-my
+		buttonImage: '', // URL for trigger button-my image
+		buttonImageOnly: false, // True if the image appears alone, false if it appears on a button-my
 		hideIfNoPrevNext: false, // True to hide next/previous month links
 			// if not applicable, false to just disable them
 		navigationAsDateFormat: false, // True if date formatting applied to prev/today/next links
@@ -8308,7 +8308,7 @@ function Datepicker() {
 		altField: '', // Selector for an alternate field to store selected dates into
 		altFormat: '', // The date format to use for the alternate field
 		constrainInput: true, // The input is constrained by the current date format
-		showButtonPanel: false, // True to show button panel, false to not show it
+		showButtonPanel: false, // True to show button-my panel, false to not show it
 		autoSize: false // True to size the input for the date format, false to leave as is
 	};
 	$.extend(this._defaults, this.regional['']);
@@ -8416,13 +8416,13 @@ $.extend(Datepicker.prototype, {
 		var showOn = this._get(inst, 'showOn');
 		if (showOn == 'focus' || showOn == 'both') // pop-up date picker when in the marked field
 			input.focus(this._showDatepicker);
-		if (showOn == 'button' || showOn == 'both') { // pop-up date picker when button clicked
-			var buttonText = this._get(inst, 'buttonText');
-			var buttonImage = this._get(inst, 'buttonImage');
-			inst.trigger = $(this._get(inst, 'buttonImageOnly') ?
+		if (showOn == 'button-my' || showOn == 'both') { // pop-up date picker when button-my clicked
+			var buttonText = this._get(inst, 'button-myText');
+			var buttonImage = this._get(inst, 'button-myImage');
+			inst.trigger = $(this._get(inst, 'button-myImageOnly') ?
 				$('<img/>').addClass(this._triggerClass).
 					attr({ src: buttonImage, alt: buttonText, title: buttonText }) :
-				$('<button type="button"></button>').addClass(this._triggerClass).
+				$('<button-my type="button-my"></button-my>').addClass(this._triggerClass).
 					html(buttonImage == '' ? buttonText : $('<img/>').attr(
 					{ src:buttonImage, alt:buttonText, title:buttonText })));
 			input[isRTL ? 'before' : 'after'](inst.trigger);
@@ -8561,7 +8561,7 @@ $.extend(Datepicker.prototype, {
 		var nodeName = target.nodeName.toLowerCase();
 		if (nodeName == 'input') {
 			target.disabled = false;
-			inst.trigger.filter('button').
+			inst.trigger.filter('button-my').
 				each(function() { this.disabled = false; }).end().
 				filter('img').css({opacity: '1.0', cursor: ''});
 		}
@@ -8584,7 +8584,7 @@ $.extend(Datepicker.prototype, {
 		var nodeName = target.nodeName.toLowerCase();
 		if (nodeName == 'input') {
 			target.disabled = true;
-			inst.trigger.filter('button').
+			inst.trigger.filter('button-my').
 				each(function() { this.disabled = true; }).end().
 				filter('img').css({opacity: '0.5', cursor: 'default'});
 		}
@@ -8807,7 +8807,7 @@ $.extend(Datepicker.prototype, {
 	                  event - if triggered by focus */
 	_showDatepicker: function(input) {
 		input = input.target || input;
-		if (input.nodeName.toLowerCase() != 'input') // find from button/image trigger
+		if (input.nodeName.toLowerCase() != 'input') // find from button-my/image trigger
 			input = $('input', input.parentNode)[0];
 		if ($.datepicker._isDisabledDatepicker(input) || $.datepicker._lastInput == input) // already here
 			return;
@@ -8882,7 +8882,7 @@ $.extend(Datepicker.prototype, {
 		if( !!cover.length ){ //avoid call to outerXXXX() when not in IE6
 			cover.css({left: -borders[0], top: -borders[1], width: inst.dpDiv.outerWidth(), height: inst.dpDiv.outerHeight()})
 		}
-		inst.dpDiv.find('button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a')
+		inst.dpDiv.find('button-my, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a')
 				.bind('mouseout', function(){
 					$(this).removeClass('ui-state-hover');
 					if(this.className.indexOf('ui-datepicker-prev') != -1) $(this).removeClass('ui-datepicker-prev-hover');
@@ -9640,12 +9640,12 @@ $.extend(Datepicker.prototype, {
 		var gotoDate = (this._get(inst, 'gotoCurrent') && inst.currentDay ? currentDate : today);
 		currentText = (!navigationAsDateFormat ? currentText :
 			this.formatDate(currentText, gotoDate, this._getFormatConfig(inst)));
-		var controls = (!inst.inline ? '<button type="button" class="ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all" onclick="DP_jQuery_' + dpuuid +
-			'.datepicker._hideDatepicker();">' + this._get(inst, 'closeText') + '</button>' : '');
-		var buttonPanel = (showButtonPanel) ? '<div class="ui-datepicker-buttonpane ui-widget-content">' + (isRTL ? controls : '') +
-			(this._isInRange(inst, gotoDate) ? '<button type="button" class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all" onclick="DP_jQuery_' + dpuuid +
+		var controls = (!inst.inline ? '<button-my type="button-my" class="ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all" onclick="DP_jQuery_' + dpuuid +
+			'.datepicker._hideDatepicker();">' + this._get(inst, 'closeText') + '</button-my>' : '');
+		var buttonPanel = (showButtonPanel) ? '<div class="ui-datepicker-button-mypane ui-widget-content">' + (isRTL ? controls : '') +
+			(this._isInRange(inst, gotoDate) ? '<button-my type="button-my" class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all" onclick="DP_jQuery_' + dpuuid +
 			'.datepicker._gotoToday(\'#' + inst.id + '\');"' +
-			'>' + currentText + '</button>' : '') + (isRTL ? '' : controls) + '</div>' : '';
+			'>' + currentText + '</button-my>' : '') + (isRTL ? '' : controls) + '</div>' : '';
 		var firstDay = parseInt(this._get(inst, 'firstDay'),10);
 		firstDay = (isNaN(firstDay) ? 0 : firstDay);
 		var showWeek = this._get(inst, 'showWeek');

@@ -3947,7 +3947,7 @@ Sys.UI.DomEvent = function Sys$UI$DomEvent(eventObject) {
     /// <summary locid="M:J#Sys.UI.DomEvent.#ctor" />
     /// <param name="eventObject"></param>
     /// <field name="altKey" type="Boolean" locid="F:J#Sys.UI.DomEvent.altKey"></field>
-    /// <field name="button" type="Sys.UI.MouseButton" locid="F:J#Sys.UI.DomEvent.button"></field>
+    /// <field name="button-my" type="Sys.UI.MouseButton" locid="F:J#Sys.UI.DomEvent.button-my"></field>
     /// <field name="charCode" type="Number" integer="true" locid="F:J#Sys.UI.DomEvent.charCode"></field>
     /// <field name="clientX" type="Number" integer="true" locid="F:J#Sys.UI.DomEvent.clientX"></field>
     /// <field name="clientY" type="Number" integer="true" locid="F:J#Sys.UI.DomEvent.clientY"></field>
