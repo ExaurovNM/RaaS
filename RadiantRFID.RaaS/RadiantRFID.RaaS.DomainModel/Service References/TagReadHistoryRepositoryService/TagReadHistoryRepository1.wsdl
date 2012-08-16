@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.radiantrfid.com/rms/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:i0="http://www.radiantrfid.com/rms" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TagReadHistoryRepository" targetNamespace="http://www.radiantrfid.com/rms/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://www.radiantrfid.com/rms" location="http://stas-pc:8080/RMS/integration/TagReadHistoryRepository.svc?wsdl=wsdl0" />
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.radiantrfid.com/rms/Imports">
+      <xsd:import schemaLocation="http://stas-pc:8080/RMS/integration/TagReadHistoryRepository.svc?xsd=xsd0" namespace="http://www.radiantrfid.com/rms/" />
+      <xsd:import schemaLocation="http://stas-pc:8080/RMS/integration/TagReadHistoryRepository.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="TagReadHistoryRepository_GetZeroAnchor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZeroAnchor" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetZeroAnchor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZeroAnchorResponse" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetCurrentAnchor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentAnchor" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetCurrentAnchor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentAnchorResponse" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetCurrentAnchorWithContext_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentAnchorWithContext" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetCurrentAnchorWithContext_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentAnchorWithContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetTagReadsAutoSize_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagReadsAutoSize" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetTagReadsAutoSize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagReadsAutoSizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetTagReads_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagReads" />
+  </wsdl:message>
+  <wsdl:message name="TagReadHistoryRepository_GetTagReads_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagReadsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TagReadHistoryRepository">
+    <wsdl:operation name="GetZeroAnchor">
+      <wsdl:input wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetZeroAnchor" message="tns:TagReadHistoryRepository_GetZeroAnchor_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetZeroAnchorResponse" message="tns:TagReadHistoryRepository_GetZeroAnchor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentAnchor">
+      <wsdl:input wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetCurrentAnchor" message="tns:TagReadHistoryRepository_GetCurrentAnchor_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetCurrentAnchorResponse" message="tns:TagReadHistoryRepository_GetCurrentAnchor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentAnchorWithContext">
+      <wsdl:input wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetCurrentAnchorWithContext" message="tns:TagReadHistoryRepository_GetCurrentAnchorWithContext_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetCurrentAnchorWithContextResponse" message="tns:TagReadHistoryRepository_GetCurrentAnchorWithContext_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagReadsAutoSize">
+      <wsdl:input wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetTagReadsAutoSize" message="tns:TagReadHistoryRepository_GetTagReadsAutoSize_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetTagReadsAutoSizeResponse" message="tns:TagReadHistoryRepository_GetTagReadsAutoSize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagReads">
+      <wsdl:input wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetTagReads" message="tns:TagReadHistoryRepository_GetTagReads_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.radiantrfid.com/rms/TagReadHistoryRepository/GetTagReadsResponse" message="tns:TagReadHistoryRepository_GetTagReads_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:service name="TagReadHistoryRepository">
+    <wsdl:port name="BasicHttpBinding_TagReadHistoryRepository" binding="i0:BasicHttpBinding_TagReadHistoryRepository">
+      <soap:address location="https://stas-pc/RMS/integration/TagReadHistoryRepository.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

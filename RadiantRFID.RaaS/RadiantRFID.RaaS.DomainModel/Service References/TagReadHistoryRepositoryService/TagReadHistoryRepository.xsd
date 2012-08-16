@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://www.radiantrfid.com/rms/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://stas-pc:8080/RMS/integration/TagReadHistoryRepository.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:element name="GetZeroAnchor">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZeroAnchorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.radiantrfid.com/rms/" minOccurs="0" name="GetZeroAnchorResult" nillable="true" type="q1:SyncAnchor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SyncAnchor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anchor" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q2="http://www.radiantrfid.com/rms/" name="SyncAnchor" nillable="true" type="q2:SyncAnchor" />
+  <xs:element name="GetCurrentAnchor">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentAnchorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://www.radiantrfid.com/rms/" minOccurs="0" name="GetCurrentAnchorResult" nillable="true" type="q3:SyncAnchor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentAnchorWithContext">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="applicationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentAnchorWithContextResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://www.radiantrfid.com/rms/" minOccurs="0" name="GetCurrentAnchorWithContextResult" nillable="true" type="q4:SyncAnchor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReadsAutoSize">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://www.radiantrfid.com/rms/" minOccurs="0" name="lastReceivedAnchor" nillable="true" type="q5:SyncAnchor" />
+        <xs:element xmlns:q6="http://www.radiantrfid.com/rms/" minOccurs="0" name="newReceivedAnchor" nillable="true" type="q6:SyncAnchor" />
+        <xs:element minOccurs="0" name="firstResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReadsAutoSizeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://www.radiantrfid.com/rms/" minOccurs="0" name="GetTagReadsAutoSizeResult" nillable="true" type="q7:RowSetOfTagReadwHn9YQzw" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="RowSetOfTagReadwHn9YQzw">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="RowSetOf{0}{#}" Namespace="http://www.radiantrfid.com/rms/" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TagRead" Namespace="http://www.radiantrfid.com/rms/" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HasMoreData" type="xs:boolean" />
+      <xs:element xmlns:q8="http://www.radiantrfid.com/rms/" minOccurs="0" name="Rows" nillable="true" type="q8:ArrayOfTagRead" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q9="http://www.radiantrfid.com/rms/" name="RowSetOfTagReadwHn9YQzw" nillable="true" type="q9:RowSetOfTagReadwHn9YQzw" />
+  <xs:complexType name="ArrayOfTagRead">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://www.radiantrfid.com/rms/" minOccurs="0" maxOccurs="unbounded" name="TagRead" nillable="true" type="q10:TagRead" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q11="http://www.radiantrfid.com/rms/" name="ArrayOfTagRead" nillable="true" type="q11:ArrayOfTagRead" />
+  <xs:complexType name="TagRead">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AntennaMask" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="DeviceID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Epc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventTimeUtc" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsAccessGranted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Rssi" nillable="true" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q12="http://www.radiantrfid.com/rms/" name="TagRead" nillable="true" type="q12:TagRead" />
+  <xs:element name="GetTagReads">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://www.radiantrfid.com/rms/" minOccurs="0" name="lastReceivedAnchor" nillable="true" type="q13:SyncAnchor" />
+        <xs:element xmlns:q14="http://www.radiantrfid.com/rms/" minOccurs="0" name="newReceivedAnchor" nillable="true" type="q14:SyncAnchor" />
+        <xs:element minOccurs="0" name="firstResult" type="xs:int" />
+        <xs:element minOccurs="0" name="maxResults" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReadsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://www.radiantrfid.com/rms/" minOccurs="0" name="GetTagReadsResult" nillable="true" type="q15:RowSetOfTagReadwHn9YQzw" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
